@@ -1,0 +1,169 @@
+/* ========================================================
+style.css
+======================================================== */
+
+body {
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1, h2 {
+  margin-bottom: 10px;
+}
+
+.progress-wrapper {
+  margin-bottom: 20px;
+}
+
+.rules-section {
+  margin-bottom: 25px;
+}
+
+#rules-content {
+  margin-top: 10px;
+}
+
+.perk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+}
+
+.perk-card {
+  background: #222;
+  border: 2px solid transparent;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.perk-card:hover {
+  transform: scale(1.03);
+}
+
+.perk-card.selected {
+  border-color: yellow;
+}
+
+.perk-card.cleared {
+  opacity: 0.35;
+}
+
+.perk-card img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.selected-perks {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+button {
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.item-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.selected-item {
+  border: 2px solid yellow;
+}
+
+.locked-item {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.creator-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #181818;
+  border: 1px solid #333;
+  padding: 14px;
+  margin: 20px 0 30px;
+}
+
+.creator-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.creator-info h2 {
+  margin: 0 0 4px;
+}
+
+.creator-info p {
+  margin: 0 0 8px;
+  color: #ccc;
+}
+
+.creator-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.creator-links a {
+  color: #9fd3ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.creator-links a:hover {
+  text-decoration: underline;
+}
+
+.item-selection {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.item-button {
+  width: 72px;
+  height: 72px;
+
+  background: #222;
+  border: 2px solid transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.item-button:hover {
+  transform: scale(1.05);
+}
+
+.item-button.selected {
+  border-color: gold;
+}
+
+.item-button img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}

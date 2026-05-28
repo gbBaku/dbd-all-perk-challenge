@@ -1,0 +1,154 @@
+<!--
+FIRST STEP ARCHITECTURE
+
+Recommended folder structure:
+
+/dbd-perk-challenge
+│
+├── index.html
+├── style.css
+├── app.js
+│
+├── data
+│   └── perks.js
+│
+└── images
+    └── perks
+        ├── adrenaline.png
+        ├── alert.png
+        └── etc...
+
+This is intentionally SIMPLE.
+No frameworks yet.
+No backend.
+No build step.
+Just open index.html in browser and iterate quickly.
+
+========================================================
+1. index.html
+========================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DBD All-Perk Challenge</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>DBD All-Perk SoloQ Challenge</h1>
+
+    <span id="progress-text">0 / 170 Cleared (0.0%)</span>
+  </header>
+
+  <!-- RULES -->
+  <section class="rules-section">
+
+    <button id="toggle-rules-btn">
+      ▼ Rules
+    </button>
+
+    <div id="rules-content">
+
+      <ul>
+        <li>All perks start unchecked. The goal is to get them all checked.</li>
+        <li>You may only play unchecked perks.</li>
+        <li>After bringing an item type, you can't bring the same item type with you for the next 5 games. No rarity or addon restrictions.</li>
+        <li>Escaping checks the 4 perks used.</li>
+        <li>Dying randomly unchecks 4 previously checked perks.</li>
+        <li>If fewer than 4 unchecked perks remain, fill remaining slots with random checked perks. Use random legal build button to generate the final build.</li>
+        <li>All games count regardless of what snipings, disconnects, suicides, or otherwise throwings occurred. Only clear hacker games don't count.</li>
+        <li>This is a SoloQ challenge. No friends allowed.</li>
+        <li>If match history correction creates illegal future games, replay from the illegal game or reset the challenge, I leave that to you.</li>
+      </ul>
+
+    </div>
+  </section>
+
+  <section class="creator-section">
+  <img class="creator-logo" src="images/logo.png" alt="gbBaku logo">
+
+  <div class="creator-info">
+    <h2>Created by gbBaku</h2>
+    <p>DBD challenge tracker for those seeking the ultimate SoloQ survivor challenge.</p>
+
+    <div class="creator-links">
+      <a href="https://www.twitch.tv/gbBaku" target="_blank">Twitch - https://www.twitch.tv/gbBaku</a> 
+      <a href="https://www.youtube.com/@gbBaku" target="_blank">YouTube - https://www.youtube.com/@gbBaku</a>
+    </div>
+  </div>
+</section>
+
+  <!-- CURRENT BUILD -->
+  <section class="current-build">
+
+    <h2>Current Build</h2>
+
+    <div id="selected-perks" class="selected-perks"></div>
+
+    <div class="action-buttons">
+      <button id="random-build-btn">Random Legal Build</button>
+      <button id="escape-btn">Escape</button>
+      <button id="death-btn">Death</button>
+      <button id="undo-btn">Undo Last Match</button>
+    </div>
+
+  </section>
+<section>
+  <h2>Item Type</h2>
+  <div class="item-selection">
+
+  <div class="item-button selected" data-item="none">
+    <img src="images/items/none.png" alt="No Item">
+  </div>
+
+  <div class="item-button" data-item="medkit">
+    <img src="images/items/medkit.png" alt="Medkit">
+  </div>
+
+  <div class="item-button" data-item="flashlight">
+    <img src="images/items/flashlight.png" alt="Flashlight">
+  </div>
+
+  <div class="item-button" data-item="toolbox">
+    <img src="images/items/toolbox.png" alt="Toolbox">
+  </div>
+
+  <div class="item-button" data-item="map">
+    <img src="images/items/map.png" alt="Map">
+  </div>
+
+  <div class="item-button" data-item="key">
+    <img src="images/items/key.png" alt="Key">
+  </div>
+
+</div>
+</section>
+  <!-- PERK GRID -->
+  <section>
+
+    <h2>Perks</h2>
+
+    <div id="perk-grid" class="perk-grid"></div>
+
+  </section>
+
+  <!-- MATCH HISTORY -->
+  <section>
+
+    <h2>Match History</h2>
+
+    <div id="match-history"></div>
+
+  </section>
+
+  <script src="data/perks.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
