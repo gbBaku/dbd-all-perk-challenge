@@ -364,11 +364,53 @@ function getAllowedRarityText() {
   const escapes = String(lastMatch.teamEscapes || "4");
 
   if (escapes === "4") return "Allowed item/addon rarity: Any rarity";
-  if (escapes === "3") return "Allowed item/addon rarity: Up to purple rarity";
-  if (escapes === "2") return "Allowed item/addon rarity: Up to blue rarity";
-  return "Allowed item/addon rarity: Up to green rarity";
+  if (escapes === "3") return "Allowed item/addon rarity: Purple, blue, green, brown.";
+  if (escapes === "2") return "Allowed item/addon rarity: Blue, green, brown.";
+  return "Allowed item/addon rarity: Green, brown.";
 }
 
 function renderAllowedRarity() {
-  allowedRarityText.textContent = getAllowedRarityText();
+
+  if (matchHistory.length === 0) {
+    allowedRarityText.textContent =
+      "Allowed item/addon rarity: No restriction.";
+
+    allowedRarityText.className = "rarity-any";
+    return;
+  }
+
+  const lastMatch = matchHistory[matchHistory.length - 1];
+  const escapes = String(lastMatch.teamEscapes || "4");
+
+  allowedRarityText.classList.remove(
+    "rarity-any",
+    "rarity-purple",
+    "rarity-blue",
+    "rarity-green"
+  );
+
+  if (escapes === "4") {
+    allowedRarityText.textContent =
+      "Allowed item/addon rarity: No restriction.";
+
+    allowedRarityText.classList.add("rarity-any");
+  }
+  else if (escapes === "3") {
+    allowedRarityText.textContent =
+      "Allowed item/addon rarity: Purple, blue, green, brown.";
+
+    allowedRarityText.classList.add("rarity-purple");
+  }
+  else if (escapes === "2") {
+    allowedRarityText.textContent =
+      "Allowed item/addon rarity: Blue, Green, brown.";
+
+    allowedRarityText.classList.add("rarity-blue");
+  }
+  else {
+    allowedRarityText.textContent =
+      "Allowed item/addon rarity: Green, brown.";
+
+    allowedRarityText.classList.add("rarity-green");
+  }
 }

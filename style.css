@@ -167,3 +167,19 @@ button {
   height: 64px;
   object-fit: contain;
 }
+
+.rarity-any {
+  color: #ff66cc;
+}
+
+.rarity-purple {
+  color: #c084ff;
+}
+
+.rarity-blue {
+  color: #66ccff;
+}
+
+.rarity-green {
+  color: #99ff66;
+}
