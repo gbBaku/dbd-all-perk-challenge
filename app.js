@@ -13,6 +13,8 @@ const undoBtn = document.getElementById("undo-btn");
 
 const toggleRulesBtn = document.getElementById("toggle-rules-btn");
 const rulesContent = document.getElementById("rules-content");
+const teamEscapesSelect = document.getElementById("team-escapes-select");
+const allowedRarityText = document.getElementById("allowed-rarity-text");
 
 let selectedItem = "none";
 
@@ -33,6 +35,7 @@ function renderAll() {
   renderProgress();
   renderMatchHistory();
   renderSelectedItem();
+  renderAllowedRarity();
 }
 
 function renderPerkGrid() {
@@ -179,7 +182,8 @@ function handleEscape() {
     usedPerks: [...selectedPerks],
     item: selectedItem,
     checkedPerks: [...selectedPerks],
-    uncheckedPerks: []
+    uncheckedPerks: [],
+    teamEscapes: teamEscapesSelect.value,
   });
 
   selectedPerks = [];
@@ -209,7 +213,8 @@ function handleDeath() {
     usedPerks: [...selectedPerks],
     item: selectedItem,
     checkedPerks: [],
-    uncheckedPerks: lostPerks
+    uncheckedPerks: lostPerks,
+    teamEscapes: teamEscapesSelect.value,
   });
 
   selectedPerks = [];
@@ -276,11 +281,11 @@ function shuffleArray(array) {
 function renderMatchHistory() {
   const historyContainer = document.getElementById("match-history");
   historyContainer.innerHTML = "";
-
+  
   matchHistory.slice().reverse().forEach((match, index) => {
     const div = document.createElement("div");
     const itemName = match.item || "none";
-
+    const teamEscapes = match.teamEscapes || "4";
     const usedNames = match.usedPerks
       .map(id => PERKS.find(p => p.id === id)?.name || id)
       .join(", ");
@@ -291,6 +296,7 @@ function renderMatchHistory() {
 
     div.innerHTML = `
       <strong>${match.result}</strong><br>
+      Team Escapes: ${teamEscapes === "1" ? "0-1" : teamEscapes}<br>
       Item: ${itemName}<br>
       Used: ${usedNames}
       ${match.result === "Death" ? `<br>Lost: ${lostNames || "None"}` : ""}
@@ -347,4 +353,22 @@ function renderSelectedItem() {
     button.classList.toggle("selected", item === selectedItem);
     button.classList.toggle("locked-item", isItemLocked(item));
   });
+}
+
+function getAllowedRarityText() {
+  if (matchHistory.length === 0) {
+    return "Allowed item/addon rarity: Any rarity";
+  }
+
+  const lastMatch = matchHistory[matchHistory.length - 1];
+  const escapes = String(lastMatch.teamEscapes || "4");
+
+  if (escapes === "4") return "Allowed item/addon rarity: Any rarity";
+  if (escapes === "3") return "Allowed item/addon rarity: Up to purple rarity";
+  if (escapes === "2") return "Allowed item/addon rarity: Up to blue rarity";
+  return "Allowed item/addon rarity: Up to green rarity";
+}
+
+function renderAllowedRarity() {
+  allowedRarityText.textContent = getAllowedRarityText();
 }

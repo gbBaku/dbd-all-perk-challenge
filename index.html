@@ -58,10 +58,19 @@ Just open index.html in browser and iterate quickly.
       <ul>
         <li>All perks start unchecked. The goal is to get them all checked.</li>
         <li>You may only play unchecked perks.</li>
-        <li>After bringing an item type, you can't bring the same item type with you for the next 5 games. No rarity or addon restrictions.</li>
         <li>Escaping checks the 4 perks used.</li>
         <li>Dying randomly unchecks 4 previously checked perks.</li>
         <li>If fewer than 4 unchecked perks remain, fill remaining slots with random checked perks. Use random legal build button to generate the final build.</li>
+        <li>After bringing an item type, you can't bring the same item type with you for the next 5 games. Item and addon rarity restrictions are as follows:
+            <ul>
+              <li>On the first game, there are no restrictions.</li>
+              <li>If the last game ended in 4 escapes, there are no restrictions in the next trial.</li>
+              <li>If the last game ended in 3 escapes, no iridescent (visceral) addons may be used.</li>
+              <li>If the last game ended in 2 escapes, only items and addons up to blue rarity may be used.</li>
+              <li>If the last game ended in 0-1 escapes, only items and addons up to green rarity may be used.</li>
+              <li>Item and addon rarity restrictions are determined by the previous match's total survivor escapes, regardless of whether you personally escaped or died.</li>
+            </ul>
+        </li>
         <li>All games count regardless of what snipings, disconnects, suicides, or otherwise throwings occurred. Only clear hacker games don't count.</li>
         <li>This is a SoloQ challenge. No friends allowed.</li>
         <li>If match history correction creates illegal future games, replay from the illegal game or reset the challenge, I leave that to you.</li>
@@ -88,15 +97,23 @@ Just open index.html in browser and iterate quickly.
   <section class="current-build">
 
     <h2>Current Build</h2>
+    <p id="allowed-rarity-text">Allowed next item rarity: Any rarity</p>
 
     <div id="selected-perks" class="selected-perks"></div>
-
+    <label for="team-escapes">Team Escapes:</label>
+<select id="team-escapes-select">
+  <option value="4">4 escapes</option>
+  <option value="3">3 escapes</option>
+  <option value="2">2 escapes</option>
+  <option value="1">0-1 escapes</option>
+</select>
     <div class="action-buttons">
       <button id="random-build-btn">Random Legal Build</button>
       <button id="escape-btn">Escape</button>
       <button id="death-btn">Death</button>
       <button id="undo-btn">Undo Last Match</button>
     </div>
+
 
   </section>
 <section>
@@ -125,6 +142,10 @@ Just open index.html in browser and iterate quickly.
 
   <div class="item-button" data-item="key">
     <img src="images/items/key.png" alt="Key">
+  </div>
+
+  <div class="item-button" data-item="fog-vial">
+    <img src="images/items/fog-vial.png" alt="Fog Vial">
   </div>
 
 </div>
